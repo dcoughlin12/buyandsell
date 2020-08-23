@@ -19,9 +19,28 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+        });
   });
-
   return router;
 };
 
+// module.exports = (db) => {
+//   router.post("/register", (req, res) => {
+//     const user = req.body
+
+//     db.query(`INSERT INTO users (name, email, password)
+//   VALUES ($1, $2, $3)
+//   RETURNING *;`, [user.username, user.email, user.password])
+//       .then(user => {
+//         res.json({ user });
+//       })
+//       .catch(err => {
+//         res
+//           .status(500)
+//           .json({ error: err.message });
+//       });
+//   });
+
+
+//   return router;
+// };
