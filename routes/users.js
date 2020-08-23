@@ -12,8 +12,8 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const listings= data.rows;
+        res.json({ listings });
       })
       .catch(err => {
         res
@@ -22,6 +22,88 @@ module.exports = (db) => {
       });
   });
 
+
   return router;
 };
+
+`INSERT INTO users (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *;`
+
+module.exports = (db) => {
+  router.post("/register", (req, res) => {
+    const user = req.body
+
+    db.query(`INSERT INTO users (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *;`, [user.username, user.email, user.password])
+      .then(user => {
+        res.json({ user });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
+  return router;
+};
+
+
+
+
+
+
+// const addUser = require('../helpers');
+
+// module.exports = (db) => {
+//   router.get("/", (req, res) => {
+//     db.query(`SELECT *
+//     FROM users`)
+//       .then(data => {
+//         const users = data.rows;
+//         res.json({ users });
+//       })
+//       .catch(err => {
+//         res
+//           .status(500)
+//           .json({ error: err.message });
+//       });
+//   });
+
+//   router.post("/register", (req, res) => {
+//         console.log(req.body)
+//         addUser(req.body)
+//     })
+//   return router;
+
+// };
+//   // router.post("/", (req, res) => {
+
+//     addUser(req.body)
+// })
+
+
+// }
+  // // Create a new user
+  // router.post('/', (req, res) => {
+  //   const user = req.body;
+  //   user.password = bcrypt.hashSync(user.password, 12);
+  //   database.addUser(user)
+  //   .then(user => {
+  //     if (!user) {
+  //       res.send({error: "error"});
+  //       return;
+  //     }
+  //     req.session.userId = user.id;
+  //     res.send("🤗");
+  //   })
+  //   .catch(e => res.send(e));
+  // });
+
+
+
+
 
