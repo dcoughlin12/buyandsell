@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Register Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel = "stylesheet" href="/styles/index.css">
+
+</head>
+<body>
+  <%- include('partials/_header') %>
+  <main style="margin: 1em;">
+
+    <h3>Create New User</h3>
+      <form action="/register" method="POST" >
+        <div class="form-group">
+          <label for="InputUsername">Username</label>
+          <input type="username" name="username" class="form-control" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+          <label for="InputEmail">Email address</label>
+          <input type="email" name="email" class="form-control" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="InputPassword">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </main>
+</body>
+</html>

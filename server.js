@@ -50,6 +50,19 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+
+// make express look in the public directory for assets (css/js/img)
+// app.use(express.static(__dirname + '/public'));
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
