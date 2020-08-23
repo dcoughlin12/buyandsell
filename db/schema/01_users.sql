@@ -1,5 +1,5 @@
 -- Drop and recreate Users table (Example)
-DROP TABLE IF EXISTS users, listings, favorites, messages  CASCADE;
+DROP TABLE IF EXISTS users, listings, favorites, messages;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE listings (
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY NOT NULL,
   is_fave BOOLEAN NOT NULL DEFAULT TRUE,
-  listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE
+  listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 

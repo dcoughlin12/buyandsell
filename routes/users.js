@@ -19,12 +19,10 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+        });
   });
-
   return router;
 };
-
 
 // module.exports = (db) => {
 //   router.post("/register", (req, res) => {
