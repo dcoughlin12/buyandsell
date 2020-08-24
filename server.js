@@ -14,6 +14,7 @@ const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
+const cookieSession = require('cookie-session');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -30,17 +31,22 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const registerUser = require("./routes/register_user");
-
+const generateCookieKey = require("./helpers")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/register", registerUser(db));
+app.use(cookieSession({
+  name: 'session',
+  keys: [generateCookieKey(), generateCookieKey(), generateCookieKey()]
+}));
 // Note: mount other resources here, using the same pattern above
 
 
