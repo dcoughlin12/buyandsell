@@ -6,7 +6,10 @@ module.exports = (db) => {
     db.query(`SELECT * FROM listings;`)
       .then(data => {
         const listings = data.rows;
-        res.json({ listings });
+        const templateVars = {
+          listings: listings,
+        };
+        res.render('listings', templateVars);
       })
       .catch(err => {
         res

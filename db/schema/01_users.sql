@@ -9,9 +9,9 @@ CREATE TABLE users (
   phone_number VARCHAR(255)
 );
 
-
 CREATE TABLE listings (
   id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   image_url VARCHAR(255) NOT NULL,
   price INTEGER NOT NULL,
