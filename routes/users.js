@@ -23,7 +23,6 @@ module.exports = (db) => {
   });
   return router;
 };
-
 // module.exports = (db) => {
 //   router.post("/register", (req, res) => {
 //     const user = req.body
