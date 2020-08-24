@@ -10,3 +10,4 @@ VALUES (3, 'Third message', 3, 3, 4);
 INSERT INTO messages (id, message, user_id, listing_id, buyer_id)
 VALUES (4, 'Fourth', 4, 4, 5);
 
+

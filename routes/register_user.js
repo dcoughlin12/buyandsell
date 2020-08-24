@@ -7,25 +7,66 @@ const router  = express.Router();
 module.exports = (db) => {
   router.post("/", (req, res) => {
     const user = req.body;
-    // let user_id = user.id;
-    // req.session.user_id = user_id;
-    db.query(`INSERT INTO users (username, email, password, phone_number) VALUES ($1, $2, $3, $4);`
-    , [user.username, user.email, user.password, user.phone_number])
-      .then(() => {
-        let user_id = user.username;
-        req.session.user_id = user_id;
-        req.session.user_id
-        res.redirect("/")
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-    });
 
+    if (!user.username || !user.email || !user.password || !user.phone_number) {
+      return res.send("Please fill in all fields");
+    }
+        db.query(`SELECT EXISTS(SELECT username FROM users WHERE username = $1 OR email = $2);`,
+        [user.username, user.email])
+        .then(data => {
+          const testing = data.rows['0'].exists;
+          if (testing) {
+            return res.send("User already exists")
+          } else {
+            db.query(`INSERT INTO users (username, email, password, phone_number) VALUES ($1, $2, $3, $4) RETURNING *;`
+            , [user.username, user.email, user.password, user.phone_number])
+            .then((data) => {
+              let userCookie = data.rows['0'];
+              console.log('!!!!!! COOKIE', userCookie.id);
+              req.session.user_id = userCookie.id;
+              // console.log(req.session.user_id);
+              res.redirect("/");
+              })
+            .catch(err => {
+              res
+                .status(500)
+                .json({ error: err.message });
+            })
+          }
+        })
+    });
     return router;
-};
+  }
+
+
+
+// RETURNS A BOOLEAN
+  // module.exports = (db) => {
+  //   router.get("/", (req, res) => {
+  //     db.query(`SELECT EXISTS(SELECT username FROM users WHERE username = 'Robert');`)
+  //       .then(data => {
+  //         const users = data.rows;
+  //         console.log(users['0'].exists);
+  //         res.json({ users });
+  //       })
+  //       .catch(err => {
+  //         res
+  //           .status(500)
+  //           .json({ error: err.message });
+  //         });
+  //   });
+  //   return router;
+  // };
+
+//  db.query(`SELECT username, email FROM users WHERE username = $1 OR email = $2;`, [user.username, user.email])
+//       .catch(err => {
+//         res
+//           .status(500)
+//           .json({ error: err.message });
+//       });
+//     });
+//     return router;
+// };
 
 
 
