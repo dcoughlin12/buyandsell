@@ -62,6 +62,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/favorites", (req, res) => {
+  res.render("favorites");
+});
+
 
 // make express look in the public directory for assets (css/js/img)
 // app.use(express.static(__dirname + '/public'));
