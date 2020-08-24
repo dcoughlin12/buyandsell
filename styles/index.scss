@@ -1,8 +1,19 @@
-body {
-  background-color: #EEE;
-}
-body h1 {
-  color: #244751;
+// body {
+//   background-color: #EEE;
+// }
+// body h1 {
+//   color: #244751;
+// }
+
+// div.container {
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+//   color: red;
+// }
+
+
+.listing-header{
+  background:skyblue!important;
 }
 
 div.container {
@@ -10,3 +21,25 @@ div.container {
   margin-bottom: 10px;
   color: #181717 ;
 }
+
+.listing-button-heart{
+ background-color: white;
+ border: none;
+ margin:10px;
+ float:left;
+ font-size: x-large;
+}
+
+.listing-button-message{
+  background-color: white;
+  border: none;
+  margin:10px;
+  float:left;
+  font-size: x-large;
+  float:right;
+  font-size: x-large;
+ }
+
+ .container{
+  margin-bottom: 32px;
+ }
