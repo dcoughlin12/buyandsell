@@ -1,27 +1,12 @@
-// .navbar{
-//   background-color: white;
-//   height: 75px;
-//   display:flexbox;
-//   align-items: center;
-//   justify-content: center;
-// }
+.navbar-custom {
+  background-color: #78bfd1ad;
+  height: 80px;
+  padding-top: 10px;
 
-// .glyphicon {
-//   font-size: 30px;
-//   color: #033c4b
-// }
-
-
-// header {
-//   list-style-type: none;
-//   margin: 0;
-//   padding: 0;
-//   background-color: green;
-// }
-
-
-// li {
-//   display: inline;
-// }
-
+}
+.navbar-default .navbar-brand {
+  font-family: 'Lilita One', cursive;
+  font-size: 30px;
+  color: black;
+}
 
