@@ -20,7 +20,7 @@ const cookieSession = require('cookie-session');
 
 app.use(cookieSession({
   name: 'session',
-  keys: [generateCookieKey(), generateCookieKey(), generateCookieKey()]
+  keys: [generateCookieKey(), generateCookieKey(), generateCookieKey(), 'user_id','username']
 }));
 
 
@@ -53,10 +53,8 @@ const loginUser = require("./routes/login.js")
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/register", registerUser(db));
-app.use(cookieSession({
-  name: 'session',
-  keys: [generateCookieKey(), generateCookieKey(), generateCookieKey()]
-}));
+
+
 // app.use("/listings", showListings(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
@@ -69,18 +67,18 @@ app.get("/", (req, res) => {
   let templateVars = {};
   db.query(`SELECT * FROM listings WHERE for_sale = 't';`)
   .then(data => {
-    if(!req.session.object) {
+    if(!req.session.user_id) {
     templateVars.username = null;
 
-    console.log('DATA.ROWS...', data.rows);
+    // console.log(req.session.object);
     templateVars.listings = data.rows;
-    console.log('!!!!!!!!', templateVars);
+    // console.log('!!!!!!!!', templateVars);
     res.render("index", templateVars)
 
   } else {
-    templateVars.username = req.session.object.username;
+    templateVars.username = req.session.username;
     templateVars.listings = data.rows;
-    console.log('logged in templateVars...', templateVars)
+    // console.log('logged in templateVars...', templateVars)
     res.render("index", templateVars);
   }
 });
@@ -107,7 +105,8 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  req.session.object = null;
+  req.session.user_id = null;
+  req.session.username = null;
   res.redirect('/');
 });
 

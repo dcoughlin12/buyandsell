@@ -9,28 +9,23 @@ module.exports = (db) => {
     if (!user.email || !user.password) {
       return res.send("Please fill in all fields");
     }
-        db.query(`SELECT * FROM users WHERE email = $1 AND password = $2;`, [user.email, user.password])
+        db.query(`SELECT * FROM users WHERE email = $1;`, [user.email])
         .then(data => {
           if (!data.rows[0]) {
-            return res.send("Email or password incorrect")
+            return res.send("Email incorrect")
           } else {
-            db.query(`SELECT * FROM users WHERE email = $1 AND password = $2;`,
-            [user.email, user.password])
-            .then((data) => {
+            console.log(data.rows[0]);
+            if( data.rows[0].password === user.password) {
               let userCookie = data.rows[0];
-              console.log(`Logged as ${userCookie.username}!!!!!!`);
               req.session.user_id = userCookie.id;
-              req.session.object = userCookie;
-              console.log(req.session.object.username);
-              console.log(req.session.user_id);
-              res.redirect("/")
-            })
-            .catch(err => {
-              res
-                .status(500)
-                .json({ error: err.message });
-            })}
-        })
-  });
-    return router;
+              req.session.username = userCookie.username;
+              res.redirect("/");
+            } else {
+              res.send("password incorrect")
+            }
+        }
+     });
+  })
+return router;
 }
+

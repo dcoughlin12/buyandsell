@@ -21,10 +21,11 @@ module.exports = (db) => {
             db.query(`INSERT INTO users (username, email, password, phone_number) VALUES ($1, $2, $3, $4) RETURNING *;`
             , [user.username, user.email, user.password, user.phone_number])
             .then((data) => {
-              let userCookie = data.rows['0'];
-              console.log('!!!!!! COOKIE', userCookie.id);
+              let userCookie = data.rows[0];
+              console.log(userCookie);
               req.session.user_id = userCookie.id;
-              // console.log(req.session.user_id);
+              req.session.username = userCookie.username;
+              console.log(req.session.user_id);
               res.redirect("/");
               })
             .catch(err => {
