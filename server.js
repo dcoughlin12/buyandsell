@@ -67,14 +67,10 @@ app.use("/login", loginUser(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   if(!req.session.object) {
-    let templateVars = {
-      username: null
-    };
+    let templateVars = { username: null };
     res.render("index", templateVars)
   } else {
-    let templateVars =  {
-      username : req.session.object.username
-    };
+    let templateVars =  { username : req.session.object.username };
     res.render("index", templateVars);
   }
 });
@@ -82,46 +78,59 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   if(!req.session.object) {
-    let templateVars = {
-      username: null
-    };
+    let templateVars = { username: null };
     res.render("login", templateVars)
   } else {
-    let templateVars =  {
-      username : req.session.object.username
-    };
+    let templateVars =  { username : req.session.object.username };
     res.render("login", templateVars);
   }
 });
 
 app.get("/logout", (req, res) => {
   req.session.object = null;
-  console.log('LOGGED OUT!!!!!!!', req.session)
   res.redirect('/');
 });
 
 app.get("/register", (req, res) => {
   if(!req.session.object) {
-    let templateVars = {
-      username: null
-    };
+    let templateVars = { username: null };
     res.render("register", templateVars)
   } else {
-    let templateVars =  {
-      username : req.session.object.username
-    };
-  res.render("register");
+    let templateVars =  { username : req.session.object.username };
+  res.render("register", templateVars);
   }
 });
 
 
 app.get("/favorites", (req, res) => {
-  res.render("favorites");
+  if(!req.session.object) {
+    let templateVars = { username: null };
+    res.render("favorites", templateVars)
+  } else {
+    let templateVars =  { username : req.session.object.username };
+  res.render("favorites", templateVars);
+  }
+});
+
+app.get("/myListings", (req, res) => {
+  if(!req.session.object) {
+    let templateVars = { username: null };
+    res.render("myListings", templateVars)
+  } else {
+    let templateVars =  { username : req.session.object.username };
+  res.render("myListings", templateVars);
+  }
 });
 
 
 app.get("/messages", (req, res) => {
-  res.render("messages");
+  if(!req.session.object) {
+    let templateVars = { username: null };
+    res.render("messages", templateVars)
+  } else {
+    let templateVars =  { username : req.session.object.username };
+  res.render("messages", templateVars);
+  }
 });
 
 // make express look in the public directory for assets (css/js/img)
