@@ -112,11 +112,11 @@ app.get("/logout", (req, res) => {
 
 app.get("/favorites", (req, res) => {
   let templateVars = {};
-  if(!req.session.object) {
+  if(!req.session.user_id) {
     // templateVars.username = null;
     res.redirect("/")
   } else {
-    templateVars.username = req.session.object.username;
+    templateVars.username = req.session.username;
     db.query(`SELECT * FROM listings JOIN favorites ON listing_id = listings.id WHERE
      favorites.user_id = $1 AND is_fave = true;`, [req.session.user_id])
     .then(data => {
