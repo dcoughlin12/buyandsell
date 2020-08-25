@@ -45,7 +45,6 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const registerUser = require("./routes/register_user");
-const generateCookieKey = require("./helpers")
 const showListings = require("./routes/listings.js");
 const loginUser = require("./routes/login.js")
 
