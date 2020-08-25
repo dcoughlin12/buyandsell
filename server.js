@@ -15,7 +15,7 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 // Cookies
-const { generateCookieKey } = require('./helpers')
+const { generateCookieKey, getAllListings } = require('./helpers')
 const cookieSession = require('cookie-session');
 
 app.use(cookieSession({
@@ -57,7 +57,7 @@ app.use(cookieSession({
   name: 'session',
   keys: [generateCookieKey(), generateCookieKey(), generateCookieKey()]
 }));
-app.use("/listings", showListings(db));
+// app.use("/listings", showListings(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -66,13 +66,24 @@ app.use("/login", loginUser(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  if(!req.session.object) {
-    let templateVars = { username: null };
+  let templateVars = {};
+  db.query(`SELECT * FROM listings WHERE for_sale = 't';`)
+  .then(data => {
+    if(!req.session.object) {
+    templateVars.username = null;
+
+    console.log('DATA.ROWS...', data.rows);
+    templateVars.listings = data.rows;
+    console.log('!!!!!!!!', templateVars);
     res.render("index", templateVars)
+
   } else {
-    let templateVars =  { username : req.session.object.username };
+    templateVars.username = req.session.object.username;
+    templateVars.listings = data.rows;
+    console.log('logged in templateVars...', templateVars)
     res.render("index", templateVars);
   }
+});
 });
 
 app.get("/register", (req, res) => {
