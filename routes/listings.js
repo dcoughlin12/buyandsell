@@ -8,7 +8,7 @@
 //         const listings = data.rows;
 //         // console.log(listings);
 //         const templateVars = {
-//           username: req.session.object.username,
+//           username: req.session.username,
 //           listings: listings
 //         };
 //         res.render('listings', templateVars);

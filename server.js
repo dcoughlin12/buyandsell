@@ -69,37 +69,33 @@ app.get("/", (req, res) => {
   .then(data => {
     if(!req.session.user_id) {
     templateVars.username = null;
-
-    // console.log(req.session.object);
     templateVars.listings = data.rows;
-    // console.log('!!!!!!!!', templateVars);
     res.render("index", templateVars)
 
   } else {
     templateVars.username = req.session.username;
     templateVars.listings = data.rows;
-    // console.log('logged in templateVars...', templateVars)
     res.render("index", templateVars);
   }
 });
 });
 
 app.get("/register", (req, res) => {
-  if(!req.session.object) {
+  if(!req.session.user_id) {
     let templateVars = { username: null };
     res.render("register", templateVars)
   } else {
-    let templateVars =  { username : req.session.object.username };
+    let templateVars =  { username : req.session.username };
   res.render("register", templateVars);
   }
 });
 
 app.get("/login", (req, res) => {
-  if(!req.session.object) {
+  if(!req.session.user_id) {
     let templateVars = { username: null };
     res.render("login", templateVars)
   } else {
-    let templateVars =  { username : req.session.object.username };
+    let templateVars =  { username : req.session.username };
     res.render("login", templateVars);
   }
 });
@@ -131,33 +127,33 @@ app.get("/favorites", (req, res) => {
 
 
 app.get("/create", (req, res) => {
-  if(!req.session.object) {
+  if(!req.session.user_id) {
     let templateVars = { username: null };
     res.render("create", templateVars)
   } else {
-    let templateVars =  { username : req.session.object.username };
+    let templateVars =  { username : req.session.username };
   res.render("create", templateVars);
   }
 });
 
 //I ADDED THIS AND THEN NOTICED THE LISTINGS.EJS FILE SO I WILL LEAVE THIS COMMENTED OUT UNTIL I TALK TO ONE OF YOU ABOUT IT. - Devin
 // app.get("/myListings", (req, res) => {
-//   if(!req.session.object) {
+//   if(!req.session.user_id) {
 //     let templateVars = { username: null };
 //     res.render("myListings", templateVars)
 //   } else {
-//     let templateVars =  { username : req.session.object.username };
+//     let templateVars =  { username : req.session.username };
 //   res.render("myListings", templateVars);
 //   }
 // });
 
 
 app.get("/messages", (req, res) => {
-  if(!req.session.object) {
+  if(!req.session.user_id) {
     let templateVars = { username: null };
     res.render("messages", templateVars)
   } else {
-    let templateVars =  { username : req.session.object.username };
+    let templateVars =  { username : req.session.username };
   res.render("messages", templateVars);
   }
 });
