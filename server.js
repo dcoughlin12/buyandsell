@@ -111,14 +111,24 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/favorites", (req, res) => {
+  let templateVars = {};
   if(!req.session.object) {
-    let templateVars = { username: null };
-    res.render("favorites", templateVars)
+    // templateVars.username = null;
+    res.redirect("/")
   } else {
-    let templateVars =  { username : req.session.object.username };
-  res.render("favorites", templateVars);
+    templateVars.username = req.session.object.username;
+    db.query(`SELECT * FROM listings JOIN favorites ON listing_id = listings.id WHERE
+     favorites.user_id = $1 AND is_fave = true;`, [req.session.user_id])
+    .then(data => {
+      console.log(data.rows)
+      templateVars.myListings = data.rows;
+      res.render("favorites", templateVars);
+    })
   }
 });
+
+
+
 
 app.get("/create", (req, res) => {
   if(!req.session.object) {
