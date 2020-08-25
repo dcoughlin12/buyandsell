@@ -8,6 +8,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel = "stylesheet" href="/styles/index.css">
+  <link rel = "stylesheet" href="/styles/favorites.css">
+
   <!-- <link rel = "stylesheet" href="/styles/_header.css"> -->
 
 
@@ -23,12 +25,14 @@
       <div class="panel panel-primary">
         <div class="panel-heading listing-header"> <%= myListings.title %></div>
         <div class="panel-body"> <a href="/***include individual listing**"> <img src="<%= myListings.url_image %>" class="img-responsive" style="width:100%" alt="Image">
-           <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart"></span>
-          <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></span></div>
-        <div class="panel-footer"></div>
+          <a href="#"> <button class="glyphicon glyphicon-heart listing-button-heart"></span>
+         <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></span></div>
+       <div class="panel-footer"></div>
+
       </div>
     </div>
     <% } %>
   </div>
 </div>
 </body>
+

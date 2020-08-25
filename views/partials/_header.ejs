@@ -6,30 +6,54 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/">GoodBuy</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/favorites"> <span class="glyphicon glyphicon-heart"></span>     My Favorites</a></li>
-          <li><a href="/myListings"> <span class="glyphicon glyphicon-tag"></span>     My Listings </a></li>
-          <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>     My Inbox</a></li>
+
+    <% if (!username) { %>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/login"> <span class="glyphicon glyphicon-heart"></span>     My Favorites</a></li>
+            <li><a href="/login"> <span class="glyphicon glyphicon-tag"></span>     My Listings </a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-envelope"></span>     My Inbox</a></li>
+          </ul>
+        </li>
+        <li class="post"><a href="/login">    POST</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-filter"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"> Low to High</a></li>
+            <li><a href="#"> High to Low</a></li>
+          </ul>
+        </li>
+      </ul>
+      <% } else { %>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/favorites"> <span class="glyphicon glyphicon-heart"></span>     My Favorites</a></li>
+              <li><a href="/myListings"> <span class="glyphicon glyphicon-tag"></span>     My Listings </a></li>
+              <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>     My Inbox</a></li>
+            </ul>
+          </li>
+          <li class="post"><a href="/create">    POST</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-filter"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"> Low to High</a></li>
+              <li><a href="#"> High to Low</a></li>
+            </ul>
+          </li>
         </ul>
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-filter"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"> Low to High</a></li>
-          <li><a href="#"> High to Low</a></li>
-        </ul>
-      </li>
-    </ul>
+    <% } %>
+
+
+
     <ul class="nav navbar-nav navbar-right">
       <% if (!username) { %>
         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>     Login</a></li>
         <li><a href="/register"><span class="glyphicon glyphicon-user"></span>     Sign Up</a></li>
-        <li class="post"><a href="/login">    POST</a></li>
         <% } else { %>
-        <li class="post"><a href="/create">    POST</a></li>
         <li class="navbar-brand welcome">Welcome <%= username %> </li>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>     Logout</a></li>
       <% } %>
