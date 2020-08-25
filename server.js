@@ -123,7 +123,15 @@ app.get("/favorites", (req, res) => {
   }
 });
 
-
+app.get("/each_listings", (req, res) => {
+  if(!req.session.user_id) {
+    let templateVars = { username: null };
+    res.render("each_listings", templateVars)
+  } else {
+    let templateVars =  { username : req.session.username };
+  res.render("each_listings", templateVars);
+  }
+});
 
 
 app.get("/create", (req, res) => {
