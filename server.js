@@ -74,6 +74,11 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/logout", (req, res) => {
+  req.session.user_id = null;
+  console.log('LOGGED OUT!!!!!!!', req.session)
+  res.redirect('/');
+});
 
 app.get("/register", (req, res) => {
   res.render("register");
