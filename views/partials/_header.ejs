@@ -26,8 +26,10 @@
     <ul class="nav navbar-nav navbar-right">
       <% if (!username) { %>
         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>     Login</a></li>
-      <li><a href="/register"><span class="glyphicon glyphicon-user"></span>     Sign Up</a></li>
-      <% } else { %>
+        <li><a href="/register"><span class="glyphicon glyphicon-user"></span>     Sign Up</a></li>
+        <li class="post"><a href="/login">    POST</a></li>
+        <% } else { %>
+        <li class="post"><a href="/create">    POST</a></li>
         <li class="navbar-brand welcome">Welcome <%= username %> </li>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>     Logout</a></li>
       <% } %>

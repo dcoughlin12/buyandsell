@@ -1,0 +1,26 @@
+#each-image {
+  width: 50%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.description {
+  border-radius: 10px;
+  border: 2px solid gray;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.price {
+  color: #1b861be8;
+  font-size: x-large;
+}
+
+#contactSeller {
+  width: 100%;
+}
