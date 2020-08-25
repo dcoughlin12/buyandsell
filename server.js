@@ -75,6 +75,15 @@ app.get("/", (req, res) => {
   }
 });
 
+app.get("/register", (req, res) => {
+  if(!req.session.object) {
+    let templateVars = { username: null };
+    res.render("register", templateVars)
+  } else {
+    let templateVars =  { username : req.session.object.username };
+  res.render("register", templateVars);
+  }
+});
 
 app.get("/login", (req, res) => {
   if(!req.session.object) {
@@ -91,17 +100,6 @@ app.get("/logout", (req, res) => {
   res.redirect('/');
 });
 
-app.get("/register", (req, res) => {
-  if(!req.session.object) {
-    let templateVars = { username: null };
-    res.render("register", templateVars)
-  } else {
-    let templateVars =  { username : req.session.object.username };
-  res.render("register", templateVars);
-  }
-});
-
-
 app.get("/favorites", (req, res) => {
   if(!req.session.object) {
     let templateVars = { username: null };
@@ -112,15 +110,26 @@ app.get("/favorites", (req, res) => {
   }
 });
 
-app.get("/myListings", (req, res) => {
+app.get("/create", (req, res) => {
   if(!req.session.object) {
     let templateVars = { username: null };
-    res.render("myListings", templateVars)
+    res.render("create", templateVars)
   } else {
     let templateVars =  { username : req.session.object.username };
-  res.render("myListings", templateVars);
+  res.render("create", templateVars);
   }
 });
+
+//I ADDED THIS AND THEN NOTICED THE LISTINGS.EJS FILE SO I WILL LEAVE THIS COMMENTED OUT UNTIL I TALK TO ONE OF YOU ABOUT IT. - Devin
+// app.get("/myListings", (req, res) => {
+//   if(!req.session.object) {
+//     let templateVars = { username: null };
+//     res.render("myListings", templateVars)
+//   } else {
+//     let templateVars =  { username : req.session.object.username };
+//   res.render("myListings", templateVars);
+//   }
+// });
 
 
 app.get("/messages", (req, res) => {

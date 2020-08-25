@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>New Listing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel = "stylesheet" href="/styles/index.css">
+  <link rel = "stylesheet" href="/styles/create.css">
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <%- include('partials/_header') %>
+  <main class="container">
+    <h1 class="newListing">
+      Create a Listing
+    </h1>
+    <form action="/api/users" method="post" id="new-listing-form" class="new-listing-form">
+      <div class="new-listing-form__field-wrapper">
+        <label for="new-listing-form__title">Title</label>
+        <input type="text" name="title" placeholder="Title" id="new-listing-form__title">
+      </div>
+
+      <div class="new-listing-form__field-wrapper">
+        <label for="new-listing-form__description">Description</label>
+        <textarea placeholder="Description" name="description" id="listing-form__description" cols="80" rows="5"></textarea>
+      </div>
+
+      <div class="new-listing-form__field-wrapper">
+        <label for="new-listing-form__cost">Price</label>
+        <input placeholder="Cost Per Night" type="number" name="cost" id="new-listing-form__cost">
+      </div>
+
+      <div class="new-listing-form__field-wrapper">
+        <label for="new-listing-form__image">Image URL</label>
+        <input placeholder="Image" type="text" name="image" id="new-listing-form__image">
+      </div>
+
+        <div class="new-listing-form__field-wrapper">
+            <button>Create</button>
+            <a id="listing-form__cancel" href="/create">Cancel</a>
+        </div>
+
+    </form>
+    </main>
+</body>
+</html>
