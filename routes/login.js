@@ -11,18 +11,17 @@ module.exports = (db) => {
     }
         db.query(`SELECT * FROM users WHERE email = $1 AND password = $2;`, [user.email, user.password])
         .then(data => {
-          // const testing = data.rows[0];
-
-          // console.log('this is testing object', testing);
           if (!data.rows[0]) {
             return res.send("Email or password incorrect")
           } else {
-            db.query(`SELECT * FROM users;`,
-            )
+            db.query(`SELECT * FROM users WHERE email = $1 AND password = $2;`,
+            [user.email, user.password])
             .then((data) => {
               let userCookie = data.rows[0];
               console.log(`Logged as ${userCookie.username}!!!!!!`);
               req.session.user_id = userCookie.id;
+              req.session.object = userCookie;
+              console.log(req.session.object.username);
               console.log(req.session.user_id);
               res.redirect("/")
             })

@@ -66,22 +66,52 @@ app.use("/login", loginUser(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  if(!req.session.object) {
+    let templateVars = {
+      username: null
+    };
+    res.render("index", templateVars)
+  } else {
+    let templateVars =  {
+      username : req.session.object.username
+    };
+    res.render("index", templateVars);
+  }
 });
 
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  if(!req.session.object) {
+    let templateVars = {
+      username: null
+    };
+    res.render("login", templateVars)
+  } else {
+    let templateVars =  {
+      username : req.session.object.username
+    };
+    res.render("login", templateVars);
+  }
 });
 
 app.get("/logout", (req, res) => {
-  req.session.user_id = null;
+  req.session.object = null;
   console.log('LOGGED OUT!!!!!!!', req.session)
   res.redirect('/');
 });
 
 app.get("/register", (req, res) => {
+  if(!req.session.object) {
+    let templateVars = {
+      username: null
+    };
+    res.render("register", templateVars)
+  } else {
+    let templateVars =  {
+      username : req.session.object.username
+    };
   res.render("register");
+  }
 });
 
 
