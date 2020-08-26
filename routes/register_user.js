@@ -40,7 +40,6 @@ module.exports = (db) => {
   }
 
 
-
 // RETURNS A BOOLEAN
   // module.exports = (db) => {
   //   router.get("/", (req, res) => {

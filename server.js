@@ -45,8 +45,9 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const registerUser = require("./routes/register_user");
-const showListings = require("./routes/listings.js");
+const individualListing = require("./routes/listings.js");
 const loginUser = require("./routes/login.js")
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -55,7 +56,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/register", registerUser(db));
 
 
-// app.use("/listings", showListings(db));
+app.use("/api/listingstest", individualListing(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -116,12 +117,29 @@ app.get("/favorites", (req, res) => {
     db.query(`SELECT * FROM listings JOIN favorites ON listing_id = listings.id WHERE
      favorites.user_id = $1 AND is_fave = true;`, [req.session.user_id])
     .then(data => {
-      console.log(data.rows)
+      // console.log(data.rows)
       templateVars.myListings = data.rows;
       res.render("favorites", templateVars);
     })
   }
 });
+
+app.get("/myListings", (req, res) => {
+  let templateVars = {};
+  if(!req.session.user_id) {
+    // templateVars.username = null;
+    res.redirect("/")
+  } else {
+    templateVars.username = req.session.username;
+    db.query(`SELECT * FROM listings WHERE user_id = $1;`, [req.session.user_id])
+    .then(data => {
+      console.log('!!!!!!! myListings data.rows !!!!', data.rows[0].id)
+      templateVars.myListings = data.rows;
+      res.render("myListings", templateVars);
+    })
+  }
+});
+
 
 app.get("/each_listing", (req, res) => {
   if(!req.session.user_id) {
@@ -143,18 +161,6 @@ app.get("/create", (req, res) => {
   res.render("create", templateVars);
   }
 });
-
-//I ADDED THIS AND THEN NOTICED THE LISTINGS.EJS FILE SO I WILL LEAVE THIS COMMENTED OUT UNTIL I TALK TO ONE OF YOU ABOUT IT. - Devin
-// app.get("/myListings", (req, res) => {
-//   if(!req.session.user_id) {
-//     let templateVars = { username: null };
-//     res.render("myListings", templateVars)
-//   } else {
-//     let templateVars =  { username : req.session.username };
-//   res.render("myListings", templateVars);
-//   }
-// });
-
 
 app.get("/messages", (req, res) => {
   if(!req.session.user_id) {

@@ -1,23 +1,27 @@
-// const express = require('express');
-// const router  = express.Router();
+const express = require('express');
+const router  = express.Router();
 
-// module.exports = {
-//   router.get("/", (req, res) => {
-//     db.query(`SELECT * FROM listings WHERE for_sale = 't';`)
-//       .then(data => {
-//         const listings = data.rows;
-//         // console.log(listings);
-//         const templateVars = {
-//           username: req.session.username,
-//           listings: listings
-//         };
-//         res.render('listings', templateVars);
-//       })
-//       .catch(err => {
-//         res
-//           .status(500)
-//           .json({ error: err.message });
-//         });
-//   });
-//   return router;
-// };
+module.exports = (db) => {
+  const listing = {
+    title: "Added new listing",
+    description: "it seems it worked",
+    price: 5000,
+    image_url: "https://avatars2.githubusercontent.com/u/10762771?s=400&v=4",
+    user_id: 4
+  };
+   router.post("/", (req, res) => {
+    db.query(`INSERT INTO listings (title, description, image_url, price, post_date, user_id)
+    VALUES ($1, $2, $3, $4, NOW(),$5) RETURNING *;` ,
+    [listing.title, listing.description, listing.image_url, listing.price, listing.user_id])
+      .then(data => {
+        const listings = data.rows;
+        res.json ({ listings });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+        });
+  });
+  return router;
+};
