@@ -43,18 +43,17 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
 const registerUser = require("./routes/register_user");
-// const individualListing = require("./routes/listings.js");
+const eachListing = require("./routes/each_listing");
 const loginUser = require("./routes/login.js")
 const createListing = require("./routes/create.js");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 app.use("/register", registerUser(db));
 app.use("/create", createListing(db))
+app.use("/messages/", eachListing(db));
 
 // app.use("/api/listingstest", individualListing(db));
 app.use("/login", loginUser(db));
@@ -104,6 +103,7 @@ app.get("/login", (req, res) => {
 app.get("/logout", (req, res) => {
   req.session.user_id = null;
   req.session.username = null;
+  req.session.listing = null;
   res.redirect('/');
 });
 
@@ -117,7 +117,7 @@ app.get("/favorites", (req, res) => {
     db.query(`SELECT * FROM listings JOIN favorites ON listing_id = listings.id WHERE
      favorites.user_id = $1 AND is_fave = true;`, [req.session.user_id])
     .then(data => {
-      // console.log(data.rows)
+      console.log('favorites....', req.session);
       templateVars.myListings = data.rows;
       res.render("favorites", templateVars);
     })
@@ -143,20 +143,19 @@ app.get("/myListings", (req, res) => {
 
 app.get("/each_listing/:listing_id", (req, res) => {
   if(!req.session.user_id) {
-    let templateVars = { username: null };
-    res.render("each_listing", templateVars)
+    res.redirect("/login");
   } else {
     const listing_id = req.params.listing_id;
     console.log(listing_id);
     db.query(`SELECT * FROM listings WHERE id = $1;`,
     [listing_id])
     .then( (data) =>{
-      let listings_info = data.rows[0];
-      console.log(listings_info);
-      let templateVars =  { username : req.session.username };
-      // res.send(listings_info, templateVars);
-      res.json({ listings_info });
-
+      let listing = data.rows[0];
+      // console.log(listing);
+      req.session.listing_id = listing.id;
+      console.log(req.session);
+      let templateVars =  { username : req.session.username, listing_id : listing };
+      res.render("each_listing", templateVars)
     } )
   }
 });
@@ -168,17 +167,23 @@ app.get("/create", (req, res) => {
     res.render("create", templateVars)
   } else {
     let templateVars =  { username : req.session.username };
-  res.render("create", templateVars);
+    res.render("create", templateVars);
   }
 });
 
 app.get("/messages", (req, res) => {
   if(!req.session.user_id) {
-    let templateVars = { username: null };
-    res.render("messages", templateVars)
+    res.redirect("/login");
   } else {
-    let templateVars =  { username : req.session.username };
-  res.render("messages", templateVars);
+    db.query(`SELECT * FROM messages JOIN listings ON listing_id = listings.id
+    WHERE messages.user_id = $1 OR buyer_id = $2;`,
+    [req.session.user_id, req.session.user_id])
+    .then((data) => {
+      const messages = data.rows;
+      console.log('MESSAGES DATA:' , messages)
+      let templateVars =  { username : req.session.username, messages };
+      res.render("messages", templateVars);
+    })
   }
 });
 

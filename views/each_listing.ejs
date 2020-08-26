@@ -16,12 +16,12 @@
 <body>
   <%- include('partials/_header') %>
       <div class="container">
-      <h3 id="msgTitle"><b>Title of Listing</b></h3>
+      <h3 id="msgTitle"><b><%= listing_id.title %></b></h3>
 
-      <div id="each-image"class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-      <div class="price">$500,000,000</div>
+      <div id="each-image"class="panel-body"><img src="<%= listing_id.image_url %>" class="img-responsive" style="width:100%" alt="Image"></div>
+      <div class="price">$<%= listing_id.price %></div>
       <div class="description">
-        <p>This will be description of my wonderful item for sale.</p>
+        <p><%= listing_id.description %></p>
       </div>
       <form class="messageForm" action="/messages/" method="POST">
         <textarea class="messageInput" name="text" placeholder="Contact Seller" id="contactSeller"></textarea>
