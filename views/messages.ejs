@@ -20,12 +20,14 @@
     <div class="listedMessages">
 
     <div class="panel panel-success msgListingImage">
-      <div class="panel-heading">BLACK FRIDAY DEAL</div>
-      <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-      <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+      <div class="panel-heading"><%= messages.title %></div>
+      <div class="panel-body"><img src="<%= messages.image_url %>" class="img-responsive" style="width:100%" alt="Image"></div>
+      <div class="panel-footer"><%= messages.price %></div>
+      <div class="panel-footer"><%= messages.description %></div>
     </div>
     <div class="messageFeedText">
-      <p>Hello Seller, I am interested in this product. Please let me know if it is still available.</p>
+      <!-- <p><b>From: <%= messages.buyer_name %></b></p> -->
+      <p><%= messages.message %></p>
       <form class="messageForm" action="/messages/" method="POST">
         <textarea class="messageInput" name="text" placeholder="Respond here..." id="messageForm"></textarea>
           <button id="messageButton" type="submit">Send</button>

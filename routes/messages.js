@@ -12,7 +12,7 @@ module.exports = (db) => {
     console.log('!!!!!!!!!! message sent !!!!!!', message);
     db.query(`INSERT INTO messages (message, user_id, listing_id, buyer_id)
     VALUES ($1, $2, $3, $4) RETURNING *;` ,
-    [message.text, ****, req.session.user_id])
+    [message.text, , req.session.user_id])
       .then(data => {
         const listings = data.rows;
         console.log('this is data.rows!!!!!!!!!!!!!', listings)

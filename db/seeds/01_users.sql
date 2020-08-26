@@ -13,4 +13,4 @@ INSERT INTO users (username, email, password, phone_number)
 VALUES ('Mario', 'mario@email.com', 'peach', '123-456-7899');
 
 INSERT INTO users (username, email, password, phone_number)
-VALUES ('Luigi', 'luigi@email.com', 'yoshi', '987-654-312');
+VALUES ('Luigi', 'luigi@email.com', 'yoshi', '987-654-3512');

@@ -47,12 +47,11 @@ const registerUser = require("./routes/register_user");
 const eachListing = require("./routes/each_listing");
 const loginUser = require("./routes/login.js")
 const createListing = require("./routes/create.js");
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/register", registerUser(db));
-app.use("/create", createListing(db))
+app.use("/create", createListing(db));
 app.use("/messages/", eachListing(db));
 
 // app.use("/api/listingstest", individualListing(db));
@@ -175,12 +174,14 @@ app.get("/messages", (req, res) => {
   if(!req.session.user_id) {
     res.redirect("/login");
   } else {
-    db.query(`SELECT * FROM messages JOIN listings ON listing_id = listings.id
+    db.query(`SELECT messages.*, listings.*, users.username AS buyer_name FROM messages JOIN users ON users.id = buyer_id
+    JOIN listings ON users.id = listings.user_id
     WHERE messages.user_id = $1 OR buyer_id = $2;`,
     [req.session.user_id, req.session.user_id])
     .then((data) => {
-      const messages = data.rows;
+      const messages = data.rows[0];
       console.log('MESSAGES DATA:' , messages)
+      console.log(req.session.username)
       let templateVars =  { username : req.session.username, messages };
       res.render("messages", templateVars);
     })
