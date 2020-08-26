@@ -179,10 +179,10 @@ app.get("/messages", (req, res) => {
     WHERE messages.user_id = $1 OR buyer_id = $2;`,
     [req.session.user_id, req.session.user_id])
     .then((data) => {
-      const messages = data.rows[0];
-      console.log('MESSAGES DATA:' , messages)
+      const listOfMessages = data.rows;
+      console.log('MESSAGES DATA:' , data.rows[0])
       console.log(req.session.username)
-      let templateVars =  { username : req.session.username, messages };
+      let templateVars =  { username : req.session.username, listOfMessages };
       res.render("messages", templateVars);
     })
   }

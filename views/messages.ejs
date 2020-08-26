@@ -16,25 +16,27 @@
   <%- include('partials/_header') %>
   <main style="margin: 1em;">
       <h3 id="msgTitle"><b>Messages</b></h3>
-    </section>
-    <div class="listedMessages">
 
-    <div class="panel panel-success msgListingImage">
-      <div class="panel-heading"><%= messages.title %></div>
-      <div class="panel-body"><img src="<%= messages.image_url %>" class="img-responsive" style="width:100%" alt="Image"></div>
-      <div class="panel-footer"><%= messages.price %></div>
-      <div class="panel-footer"><%= messages.description %></div>
-    </div>
-    <div class="messageFeedText">
-      <!-- <p><b>From: <%= messages.buyer_name %></b></p> -->
-      <p><%= messages.message %></p>
-      <form class="messageForm" action="/messages/" method="POST">
-        <textarea class="messageInput" name="text" placeholder="Respond here..." id="messageForm"></textarea>
-          <button id="messageButton" type="submit">Send</button>
+      <% for (let msg of listOfMessages) { %>
+      <div class="listedMessages">
+        <div class="panel panel-success msgListingImage">
+          <div class="panel-heading"><%= msg.title %></div>
+          <div class="panel-body"><img src="<%= msg.image_url %>" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><%= msg.price %></div>
+          <div class="panel-footer"><%= msg.description %></div>
         </div>
-      </form>
-    </div>
-  </div>
+        <div class="messageFeedText">
+          <p><%= msg.message %></p>
+          <form class="messageForm" action="/messages/" method="POST">
+            <textarea class="messageInput" name="text" placeholder="Respond here..." id="messageForm"></textarea>
+              <button id="messageButton" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <% } %>
+
+
     </main>
 </body>
 </html>
