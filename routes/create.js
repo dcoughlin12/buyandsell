@@ -11,8 +11,8 @@ module.exports = (db) => {
       res.redirect("/login")
     } else {
     console.log('!!!!!!!!!! listing info!!!!!!', listing);
-    db.query(`INSERT INTO listings (title, description, image_url, price, post_date, user_id)
-    VALUES ($1, $2, $3, $4, NOW(),$5) RETURNING *;` ,
+    db.query(`INSERT INTO listings (title, description, image_url, price, user_id)
+    VALUES ($1, $2, $3, $4,$5) RETURNING *;` ,
     [listing.title, listing.description, listing.image, listing.cost, req.session.user_id])
       .then(data => {
         const listings = data.rows;

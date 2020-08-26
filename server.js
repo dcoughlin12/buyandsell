@@ -141,13 +141,23 @@ app.get("/myListings", (req, res) => {
 });
 
 
-app.get("/each_listing", (req, res) => {
+app.get("/each_listing/:listing_id", (req, res) => {
   if(!req.session.user_id) {
     let templateVars = { username: null };
     res.render("each_listing", templateVars)
   } else {
-    let templateVars =  { username : req.session.username };
-  res.render("each_listing", templateVars);
+    const listing_id = req.params.listing_id;
+    console.log(listing_id);
+    db.query(`SELECT * FROM listings WHERE id = $1;`,
+    [listing_id])
+    .then( (data) =>{
+      let listings_info = data.rows[0];
+      console.log(listings_info);
+      let templateVars =  { username : req.session.username };
+      // res.send(listings_info, templateVars);
+      res.json({ listings_info });
+
+    } )
   }
 });
 

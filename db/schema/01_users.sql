@@ -15,7 +15,7 @@ CREATE TABLE listings (
   description TEXT NOT NULL,
   image_url VARCHAR(255) NOT NULL,
   price INTEGER NOT NULL,
-  post_date DATE NOT NULL,
+  post_date DATE NOT NULL DEFAULT NOW(),
   for_sale BOOLEAN NOT NULL DEFAULT TRUE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
@@ -30,6 +30,7 @@ CREATE TABLE favorites (
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
   message TEXT NOT NULL,
+  post_date DATE NOT NULL DEFAULT NOW(),
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
   buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE
