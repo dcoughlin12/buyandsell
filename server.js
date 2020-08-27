@@ -188,7 +188,7 @@ app.get("/messages", (req, res) => {
     [req.session.user_id, req.session.user_id])
     .then((data) => {
       const listOfMessages = data.rows;
-      console.log('LIST OF MESSAGES ', listOfMessages)
+      console.log('LIST OF MESSAGES ', listOfMessages[0])
       console.log(req.session.username)
       let templateVars =  { username : req.session.username, listOfMessages };
       res.render("messages", templateVars);
