@@ -22,56 +22,62 @@
 
   <div class="container">
     <div id="theListing" class="row mt-500 ">
-      <% for (item of myListings) { %>
-      <% if (item.for_sale){ %>
-      <div class="col-sm-4 mt-500">
-        <div class="panel panel-primary">
-          <div class="panel-heading listing-header"><%= item.title %></div>
-          <div class="panel-body">
-            <a href="/each_listing/<%= item.id %>"> <img
-                src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                class="img-responsive" style="width:100%" alt="Image">
-            </a>
-            <div class="cta">
-              <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
-              </a>
-              <form action="/sold/<%= item.id %>" method="POST">
-                <button class="glyphicon glyphicon-bitcoin listing-button-sell"></button>
-              </form>
-              <form action="/delete/<%= item.id %>" method="POST">
-                <button class="glyphicon glyphicon-trash listing-button-trash"></button>
-              </form>
-              <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></button>
-              </a>
-            </div>
-          </div>
-          <div class="panel-footer"><%="$" + item.price%></div>
-          <div class="panel-footer"><%= item.post_date%></div>
-        </div>
-      </div>
-      <% } else { %>
-        <div class="col-sm-4 mt-500">
-          <div class="panel panel-primary" style="opacity: 50%">
-            <div class="panel-heading listing-header"><%= item.title %></div>
-            <div class="panel-body">
-              <a href="/each_listing/<%= item.id %>"> <img
-                  src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                  class="img-responsive" style="width:100%" alt="Image">
-              </a>
-              <div class="cta">
-                <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
-                  <button class="glyphicon glyphicon-bitcoin listing-button-sold"></button>
+
+      <% if (myListings.length < 1) { %>
+        <a href="/create"><p>Create new listing</p></a>
+       <%  } else { %>
+
+        <% for (item of myListings) { %>
+        <%  if (item.for_sale) { %>
+          <div class="col-sm-4 mt-500">
+            <div class="panel panel-primary">
+              <div class="panel-heading listing-header"><%= item.title %></div>
+              <div class="panel-body">
+                <a href="/each_listing/<%= item.id %>"> <img
+                    src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    class="img-responsive" style="width:100%" alt="Image">
+                </a>
+                <div class="cta">
+                  <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
+                  </a>
+                  <form action="/sold/<%= item.id %>" method="POST">
+                    <button class="glyphicon glyphicon-bitcoin listing-button-sell"></button>
+                  </form>
                   <form action="/delete/<%= item.id %>" method="POST">
                     <button class="glyphicon glyphicon-trash listing-button-trash"></button>
                   </form>
-                 <button class="glyphicon glyphicon-comment listing-button-message"></button>
+                  <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></button>
+                  </a>
+                </div>
+              </div>
+              <div class="panel-footer"><%="$" + item.price%></div>
+              <div class="panel-footer"><%= item.post_date%></div>
+            </div>
+          </div>
+          <% } else { %>
+            <div class="col-sm-4 mt-500">
+              <div class="panel panel-primary" style="opacity: 50%">
+                <div class="panel-heading listing-header"><%= item.title %></div>
+                <div class="panel-body">
+                  <a href="/each_listing/<%= item.id %>"> <img
+                      src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                      class="img-responsive" style="width:100%" alt="Image">
+                  </a>
+                  <div class="cta">
+                    <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
+                      <button class="glyphicon glyphicon-bitcoin listing-button-sold"></button>
+                      <form action="/delete/<%= item.id %>" method="POST">
+                        <button class="glyphicon glyphicon-trash listing-button-trash"></button>
+                      </form>
+                      <button class="glyphicon glyphicon-comment listing-button-message"></button>
 
+                  </div>
+                </div>
+                <div class="panel-footer"><%="$" + item.price%></div>
+                <div class="panel-footer"><%= item.post_date%></div>
               </div>
             </div>
-            <div class="panel-footer"><%="$" + item.price%></div>
-            <div class="panel-footer"><%= item.post_date%></div>
-          </div>
-        </div>
+        <% } %>
       <% } %>
     <% } %>
     </div>

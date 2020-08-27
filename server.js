@@ -66,7 +66,6 @@ app.use("/delete/", deleteListing(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
 
-
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -180,7 +179,7 @@ app.get("/myListings", (req, res) => {
     templateVars.username = req.session.username;
     db.query(`SELECT * FROM listings WHERE user_id = $1;`, [req.session.user_id])
     .then(data => {
-      console.log('!!!!!!! myListings data.rows !!!!', data.rows[0].id)
+      console.log(data.rows);
       templateVars.myListings = data.rows;
       res.render("myListings", templateVars);
     })
