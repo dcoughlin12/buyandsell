@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Main Page</title>
   <meta charset="utf-8">
@@ -7,32 +8,70 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel = "stylesheet" href="/styles/index.css">
-  <link rel = "stylesheet" href="/styles/favorites.css">
-  <link rel = "stylesheet" href="/styles/myListings.css">
+  <link rel="stylesheet" href="/styles/index.css">
+  <link rel="stylesheet" href="/styles/favorites.css">
+  <link rel="stylesheet" href="/styles/myListings.css">
 
   <!-- <link rel = "stylesheet" href="/styles/_header.css"> -->
 
 
 <body>
-<%- include('partials/_header') %>
+  <%- include('partials/_header') %>
 
-<h1 class="myListingsHead">My Listings</h1>
+  <h1 class="myListingsHead">My Listings</h1>
 
-<div class="container">
-  <div id="theListing"class="row mt-500 ">
-  <% for (item of myListings) { %>
-    <div class="col-sm-4 mt-500">
-      <div class="panel panel-primary">
-        <div class="panel-heading listing-header"><%= item.title %></div>
-        <div class="panel-body"> <a href="/each_listing/<%= item.id %>"> <img src="<%= item.url_image %>" class="img-responsive" style="width:100%" alt="Image">
-          <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></span>
-         <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></span></div>
-        <div class="panel-footer"><%="$" + item.price%></div>
-        <div class="panel-footer"><%= item.post_date%></div>
+  <div class="container">
+    <div id="theListing" class="row mt-500 ">
+      <% for (item of myListings) { %>
+      <% if (item.for_sale){ %>
+      <div class="col-sm-4 mt-500">
+        <div class="panel panel-primary">
+          <div class="panel-heading listing-header"><%= item.title %></div>
+          <div class="panel-body">
+            <a href="/each_listing/<%= item.id %>"> <img
+                src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                class="img-responsive" style="width:100%" alt="Image">
+            </a>
+            <div class="cta">
+              <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
+              </a>
+              <form action="/sold/<%= item.id %>" method="POST">
+                <button class="glyphicon glyphicon-bitcoin listing-button-sold"></button>
+              </form>
+              <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></button>
+              </a>
+            </div>
+          </div>
+          <div class="panel-footer"><%="$" + item.price%></div>
+          <div class="panel-footer"><%= item.post_date%></div>
+        </div>
       </div>
-    </div>
+      <% } else { %>
+        <div class="col-sm-4 mt-500">
+          <div class="panel panel-primary" style="opacity: 50%">
+            <div class="panel-heading listing-header"><%= item.title %></div>
+            <div class="panel-body">
+              <a href="/each_listing/<%= item.id %>"> <img
+                  src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                  class="img-responsive" style="width:100%" alt="Image">
+              </a>
+              <div class="cta">
+                <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
+                </a>
+                  <button class="glyphicon glyphicon-bitcoin listing-button-sold"></button>
+                <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></button>
+                </a>
+              </div>
+            </div>
+            <div class="panel-footer"><%="$" + item.price%></div>
+            <div class="panel-footer"><%= item.post_date%></div>
+          </div>
+        </div>
+      <% } %>
     <% } %>
+    </div>
   </div>
-</div>
 </body>
+
+<!-- "glyphicon glyphicon-heart-empty listing-button-heart-empty" -->
+<!-- "glyphicon glyphicon-comment listing-button-message" -->

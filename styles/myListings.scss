@@ -4,6 +4,7 @@
   margin:10px;
   float:left;
   font-size: x-large;
+  color:#cf0808;
  }
 
  .myListingsHead {
@@ -13,3 +14,26 @@
   margin-top: 32px;
  }
 
+ .listing-button-sell{
+  background-color: white;
+  border: none;
+  margin:10px;
+  float:left;
+  font-size: x-large;
+ }
+
+ .listing-button-sold{
+  background-color: white;
+  border: none;
+  margin:10px;
+  float:left;
+  font-size: x-large;
+  cursor: not-allowed;
+ }
+
+
+ .cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }

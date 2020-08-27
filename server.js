@@ -47,6 +47,7 @@ const registerUser = require("./routes/register_user");
 const eachListing = require("./routes/each_listing");
 const loginUser = require("./routes/login.js")
 const createListing = require("./routes/create.js");
+const markAsSold = require("./routes/sold.js");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -54,6 +55,8 @@ app.use("/register", registerUser(db));
 app.use("/create", createListing(db));
 app.use("/messages/", eachListing(db));
 
+
+app.use("/sold/", markAsSold(db));
 // app.use("/api/listingstest", individualListing(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
