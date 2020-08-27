@@ -24,7 +24,7 @@
     <div class="col-sm-4 mt-500">
       <div class="panel panel-primary">
         <div class="panel-heading listing-header"><%= item.title %></div>
-        <div class="panel-body"> <a href="/each_listing/<%= item.id %>"> <img src="<%= myListings.url_image %>" class="img-responsive" style="width:100%" alt="Image">
+        <div class="panel-body"> <a href="/each_listing/<%= item.id %>"> <img src="<%= item.image_url %>" class="img-responsive" style="width:100%" alt="Image"></a>
           <form action="/unfave/<%= item.id %>" method="POST">
             <button class="glyphicon glyphicon-heart listing-button-heart"></button>
           </form>
