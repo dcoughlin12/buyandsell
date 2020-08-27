@@ -23,6 +23,9 @@
       <div class="description">
         <p><%= listing_id.description %></p>
       </div>
+      <form action="/fave/<%= listing_id.id %>" method="POST">
+        <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
+      </form>
       <form class="messageForm" action="/messages/" method="POST">
         <textarea class="messageInput" name="text" placeholder="Contact Seller" id="contactSeller"></textarea>
           <button id="messageButton" class="btn btn-primary">Send</button>
