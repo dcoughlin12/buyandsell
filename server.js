@@ -50,7 +50,8 @@ const createListing = require("./routes/create.js");
 const markAsSold = require("./routes/sold.js");
 const messageResponses = require("./routes/messages.js");
 const unfavorite = require("./routes/unfavorite");
-const favoriteItem = require("./routes/favorite")
+const favoriteItem = require("./routes/favorite");
+const deleteListing = require("./routes/deleteListing");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -61,7 +62,7 @@ app.use("/fave/", favoriteItem(db));
 app.use("/unfave/", unfavorite(db));
 app.use("/sold/", markAsSold(db));
 app.use("/messagesResponses", messageResponses(db))
-// app.use("/api/listingstest", individualListing(db));
+app.use("/delete/", deleteListing(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
 
