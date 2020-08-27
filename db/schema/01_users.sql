@@ -33,5 +33,6 @@ CREATE TABLE messages (
   post_date DATE NOT NULL DEFAULT NOW(),
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
-  buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  sender_name VARCHAR(255) NOT NULL
 );

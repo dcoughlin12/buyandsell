@@ -17,9 +17,9 @@ module.exports = (db) => {
         console.log('this is msgDetails!!!!!!!!!!!!!', msgDetails);
         const to = msgDetails.buyer_id
       const from = msgDetails.user_id
-        db.query(`INSERT INTO messages (message, user_id, listing_id, buyer_id)
-          VALUES ($1, $2, $3, $4) RETURNING *;` ,
-          [message, msgDetails.user_id, msgDetails.listing_id, msgDetails.buyer_id])
+        db.query(`INSERT INTO messages (message, user_id, listing_id, buyer_id, sender_name)
+          VALUES ($1, $2, $3, $4, $5) RETURNING *;` ,
+          [message, msgDetails.user_id, msgDetails.listing_id, msgDetails.buyer_id, req.session.username])
           .then(data => {
             const response = data.rows;
             console.log('this is response!!!!!!!!!!!!!', response)
