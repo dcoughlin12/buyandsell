@@ -224,13 +224,14 @@ app.get("/messages", (req, res) => {
   } else {
     db.query(`SELECT messages.*, messages.id AS message_id, listings.*, users.username AS buyer_name
     FROM messages
-    JOIN users ON users.id = buyer_id
-    JOIN listings ON users.id = listings.user_id
-    WHERE messages.user_id = $1 OR buyer_id = $2
+    INNER JOIN users ON users.id = messages.buyer_id
+    INNER JOIN listings ON messages.listing_id = listings.id
+    WHERE messages.user_id = $1 OR messages.buyer_id = $2
     ORDER BY messages.id DESC;`,
     [req.session.user_id, req.session.user_id])
     .then((data) => {
       const listOfMessages = data.rows;
+      console.log('ROWCOUNT', data.rowCount)
       console.log('LIST OF MESSAGES ', listOfMessages[0])
       console.log(req.session.username)
       let templateVars =  { username : req.session.username, listOfMessages };
