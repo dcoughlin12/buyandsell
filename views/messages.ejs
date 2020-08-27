@@ -26,8 +26,9 @@
           <div class="panel-footer"><%= msg.description %></div>
         </div>
         <div class="messageFeedText">
+          <p> <%= msg.buyer_name %> </p>
           <p><%= msg.message %></p>
-          <form class="messageForm" action="/messages/" method="POST">
+          <form class="messageForm" action="/messagesResponses/<%= msg.message_id %>" method="POST">
             <textarea class="messageInput" name="text" placeholder="Respond here..." id="messageForm"></textarea>
               <button id="messageButton" type="submit">Send</button>
             </div>

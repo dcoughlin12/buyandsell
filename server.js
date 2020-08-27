@@ -48,6 +48,7 @@ const eachListing = require("./routes/each_listing");
 const loginUser = require("./routes/login.js")
 const createListing = require("./routes/create.js");
 const markAsSold = require("./routes/sold.js");
+const messageResponses = require("./routes/messages.js")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -57,6 +58,7 @@ app.use("/messages/", eachListing(db));
 
 
 app.use("/sold/", markAsSold(db));
+app.use("/messagesResponses", messageResponses(db))
 // app.use("/api/listingstest", individualListing(db));
 app.use("/login", loginUser(db));
 // Note: mount other resources here, using the same pattern above
@@ -177,13 +179,16 @@ app.get("/messages", (req, res) => {
   if(!req.session.user_id) {
     res.redirect("/login");
   } else {
-    db.query(`SELECT messages.*, listings.*, users.username AS buyer_name FROM messages JOIN users ON users.id = buyer_id
+    db.query(`SELECT messages.*, messages.id AS message_id, listings.*, users.username AS buyer_name
+    FROM messages
+    JOIN users ON users.id = buyer_id
     JOIN listings ON users.id = listings.user_id
-    WHERE messages.user_id = $1 OR buyer_id = $2;`,
+    WHERE messages.user_id = $1 OR buyer_id = $2
+    ORDER BY messages.id DESC;`,
     [req.session.user_id, req.session.user_id])
     .then((data) => {
       const listOfMessages = data.rows;
-      console.log('MESSAGES DATA:' , data.rows[0])
+      console.log('LIST OF MESSAGES ', listOfMessages)
       console.log(req.session.username)
       let templateVars =  { username : req.session.username, listOfMessages };
       res.render("messages", templateVars);
@@ -197,3 +202,7 @@ app.get("/messages", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
+
+// $(".messageForm").each(function(){console.log($(this).attr("action"))})
