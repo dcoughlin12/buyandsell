@@ -48,7 +48,8 @@ const eachListing = require("./routes/each_listing");
 const loginUser = require("./routes/login.js")
 const createListing = require("./routes/create.js");
 const markAsSold = require("./routes/sold.js");
-const messageResponses = require("./routes/messages.js")
+const messageResponses = require("./routes/messages.js");
+const unfavorite = require("./routes/favorites");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -56,7 +57,7 @@ app.use("/register", registerUser(db));
 app.use("/create", createListing(db));
 app.use("/messages/", eachListing(db));
 
-
+app.use("/unfave/", unfavorite(db));
 app.use("/sold/", markAsSold(db));
 app.use("/messagesResponses", messageResponses(db))
 // app.use("/api/listingstest", individualListing(db));
@@ -123,6 +124,7 @@ app.get("/favorites", (req, res) => {
     .then(data => {
       console.log('favorites....', req.session);
       templateVars.myListings = data.rows;
+      console.log(data.rows);
       res.render("favorites", templateVars);
     })
   }
