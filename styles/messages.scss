@@ -14,10 +14,41 @@
 .msgListingImage {
   border: solid;
   width: 200px;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
   margin-left: 2%;
   border: 4px solid #78bfd1ad;
+}
+#thumbImage {
+  width: 100%;
+}
+
+#imageSpace {
+  padding: 0;
+}
+
+.panel-success>.panel-heading {
+  background-color: #5092C6;
+}
+
+.panel-footer {
+  background-color: #cccccc9e;
+  border-top: solid 1px;
+  border-color: #615f5f;
+  font-family: 'Baloo Bhaina 2', cursive;
+}
+
+#footerPrice {
+  font-weight: 600;
+}
+
+#msgTitleHeading {
+  color: white;
+  font-family: 'Baloo Bhaina 2', cursive;
+  font-size: larger;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
 }
 
 .messageFeedText {
@@ -33,6 +64,24 @@
 #msgTitle {
   display: flex;
   justify-content: space-around;
-  font-family: 'Lilita One', cursive;
+  font-family: 'Baloo Bhaina 2', cursive;
   font-size: 40px;
+}
+
+#sentMsg {
+  border: solid 1px green;
+  border-radius: 25px;
+  width: 130px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.messageFeedText {
+  width: 80%;
+}
+
+#messageButton {
+  background-color: #5092c7;
+  border-radius: 15px;
+  color: white;
 }
