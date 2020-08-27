@@ -85,6 +85,45 @@ app.get("/", (req, res) => {
 });
 });
 
+//get route to filter from low to high, renders home page with filtered data
+app.get("/lowtohigh", (req, res) => {
+  let templateVars = {};
+  db.query(`SELECT * FROM listings WHERE for_sale = 't' ORDER by price;`)
+  .then(data => {
+    if(!req.session.user_id) {
+    templateVars.username = null;
+    templateVars.listings = data.rows;
+    res.render("index", templateVars)
+
+  } else {
+    templateVars.username = req.session.username;
+    templateVars.listings = data.rows;
+    res.render("index", templateVars);
+  }
+});
+})
+
+//get route to filter from high to low, renders home page with filtered data
+app.get("/hightolow", (req, res) => {
+  let templateVars = {};
+  db.query(`SELECT * FROM listings WHERE for_sale = 't' ORDER by price DESC;`)
+  .then(data => {
+    if(!req.session.user_id) {
+    templateVars.username = null;
+    templateVars.listings = data.rows;
+    res.render("index", templateVars)
+
+  } else {
+    templateVars.username = req.session.username;
+    templateVars.listings = data.rows;
+    res.render("index", templateVars);
+  }
+});
+})
+
+
+
+
 app.get("/register", (req, res) => {
   if(!req.session.user_id) {
     let templateVars = { username: null };
@@ -145,6 +184,7 @@ app.get("/myListings", (req, res) => {
     })
   }
 });
+
 
 
 app.get("/each_listing/:listing_id", (req, res) => {

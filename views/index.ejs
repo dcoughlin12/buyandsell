@@ -64,8 +64,12 @@
 <li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-filter">Filter </span></a>
   <ul class="dropdown-menu">
-    <li><a href="#"> Low to High</a></li>
-    <li><a href="#"> High to Low</a></li>
+    <form action="/lowtohigh" method="GET">
+      <li><button> Low to High</button></li>
+    </form>
+    <form action="/hightolow" method="GET">
+      <li><button> High to Low</button></li>
+    </form>
   </ul>
 </li>
 </ul>
@@ -85,3 +89,5 @@
 <% } %>
 
 </body>
+
+
