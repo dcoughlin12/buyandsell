@@ -38,15 +38,15 @@
                     class="img-responsive" style="width:100%" alt="Image">
                 </a>
                 <div class="cta">
-                  <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
+                  <a href="#"> <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty" title="Favorite"></button>
                   </a>
                   <form action="/sold/<%= item.id %>" method="POST">
-                    <button class="glyphicon glyphicon-bitcoin listing-button-sell"></button>
+                    <button class="glyphicon glyphicon-usd listing-button-sell" title="Sold"></button>
                   </form>
                   <form action="/delete/<%= item.id %>" method="POST">
-                    <button class="glyphicon glyphicon-trash listing-button-trash"></button>
+                    <button class="glyphicon glyphicon-trash listing-button-trash" title="Delete"></button>
                   </form>
-                  <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message"></button>
+                  <a href="/messages"> <button class="glyphicon glyphicon-comment listing-button-message" title="Message"></button>
                   </a>
                 </div>
               </div>
@@ -64,12 +64,12 @@
                       class="img-responsive" style="width:100%" alt="Image">
                   </a>
                   <div class="cta">
-                    <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty"></button>
-                      <button class="glyphicon glyphicon-bitcoin listing-button-sold"></button>
+                    <button class="glyphicon glyphicon-heart-empty listing-button-heart-empty" title="Favorite"></button>
+                      <button class="glyphicon glyphicon-usd listing-button-sold" title="Sold"></button>
                       <form action="/delete/<%= item.id %>" method="POST">
-                        <button class="glyphicon glyphicon-trash listing-button-trash"></button>
+                        <button class="glyphicon glyphicon-trash listing-button-trash" title="Delete"></button>
                       </form>
-                      <button class="glyphicon glyphicon-comment listing-button-message"></button>
+                      <button class="glyphicon glyphicon-comment listing-button-message" title="Message"></button>
 
                   </div>
                 </div>

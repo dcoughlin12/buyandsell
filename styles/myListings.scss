@@ -32,8 +32,30 @@
  }
 
 
+ .listing-button-trash{
+  background-color: white;
+  border: none;
+  margin:10px;
+  float:left;
+  font-size: x-large;
+  cursor: not-allowed;
+ }
+
+
+
  .cta {
   display: flex;
   align-items: center;
   justify-content: space-between;
  }
+
+
+
+ h1.myListingsHead {
+  display:flex;
+  justify-content:center;
+  margin-bottom: 50px;
+  margin-top: 32px;
+  font-family:'Baloo Bhaina 2', cursive;
+  font-size: 40px;
+}

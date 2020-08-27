@@ -12,6 +12,8 @@
    justify-content:center;
    margin-bottom: 50px;
    margin-top: 32px;
+   font-family:'Baloo Bhaina 2', cursive;
+   font-size: 40px;
 
  }
 
@@ -20,4 +22,30 @@
     margin-left: -15px;
     display: flex;
     justify-content: center;
+}
+
+
+.panel-heading.listing-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: #5092C6;
+  font-size: 22px;
+  font-family: 'Baloo Bhaina 2', cursive;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+
+.panel-footer {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: medium;
+  font-family: 'Baloo Bhaina 2', cursive;
+  font-weight: 600;
 }
