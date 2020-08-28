@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Boogaloo', cursive;
+  font-family: 'Baloo Bhaina 2', cursive;
 }
 
 
@@ -29,5 +29,12 @@
   border: 2px solid #78bfd1ad;
   padding: 2%;
   padding-left: 4%
+}
+
+#createButton {
+  background-color: #5092c7;
+    border-radius: 10px;
+    color: white;
+    padding: 4px;
 }
 

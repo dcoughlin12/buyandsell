@@ -8,20 +8,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel = "stylesheet" href="/styles/index.css">
+  <link rel = "stylesheet" href="/styles/login.css">
 
 </head>
 <body>
   <%- include('partials/_header') %>
   <main style="margin: 1em;">
 
-      <h3><b>Login</b></h3>
-        <form action="/login" method="POST" >
+      <h3 class="headingText"><b>Login</b></h3>
+        <form class="loginForm" action="/login" method="POST" >
           <div class="form-group">
-            <label for="InputEmail1">Email address</label>
+            <label class="loginFormText" for="InputEmail1">Email address</label>
             <input type="email" name="email" class="form-control" placeholder="Enter email">
           </div>
           <div class="form-group">
-            <label for="InputPassword">Password</label>
+            <label class="loginFormText" for="InputPassword">Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password">
           </div>
             <button type="submit" class="btn btn-primary">Submit</button>

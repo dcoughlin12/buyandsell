@@ -9,8 +9,7 @@
 }
 
 .description {
-  border-radius: 10px;
-  border: 2px solid gray;
+  border-bottom: 2px solid gray;
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -23,4 +22,16 @@
 
 #contactSeller {
   width: 100%;
+}
+
+.favoritesButton {
+  margin-bottom: 10px;
+}
+
+#messageButton {
+  float: right;
+}
+
+.messageForm {
+  width: 80%;
 }

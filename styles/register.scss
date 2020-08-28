@@ -1,0 +1,18 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+.registerForm {
+  width: 30%;
+}
+
+.registerFormText {
+  font-family: 'Baloo Bhaina 2', cursive;
+}
+
+.registerHeadingText {
+  font-family: 'Lilita One', cursive;
+}
