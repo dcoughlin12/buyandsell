@@ -3,9 +3,10 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .description {
@@ -30,8 +31,17 @@
 
 #messageButton {
   float: right;
+  height: 40px;
+  width: 90px;
+  font-size: larger;
+  margin-top: 10px;
 }
 
 .messageForm {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }

@@ -107,3 +107,10 @@ div.container.carousel{
   display:flex;
   justify-content: center;
 }
+
+.row.mt-500 {
+  display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
