@@ -7,12 +7,16 @@ module.exports = (db) => {
     const user = req.body;
 
     if (!user.email || !user.password) {
-      return res.send("Please fill in all fields");
+      let templateVars = {};
+      templateVars.username = null;
+      return res.render("fill_all_fields", templateVars);
     }
         db.query(`SELECT * FROM users WHERE email = $1;`, [user.email])
         .then(data => {
           if (!data.rows[0]) {
-            return res.send("Email incorrect")
+            let templateVars = {};
+            templateVars.username = null;
+            return res.render("wrong_username", templateVars)
           } else {
             console.log(data.rows[0]);
             if( data.rows[0].password === user.password) {
@@ -21,7 +25,9 @@ module.exports = (db) => {
               req.session.username = userCookie.username;
               res.redirect("/");
             } else {
-              res.send("password incorrect")
+              let templateVars = {};
+              templateVars.username = null;
+              return res.render("wrong_username", templateVars)
             }
         }
      });

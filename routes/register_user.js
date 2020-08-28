@@ -9,14 +9,18 @@ module.exports = (db) => {
     const user = req.body;
 
     if (!user.username || !user.email || !user.password || !user.phone_number) {
-      return res.send("Please fill in all fields");
+      let templateVars = {};
+      templateVars.username = null;
+      return res.render("fill_all_fields", templateVars);
     }
         db.query(`SELECT EXISTS(SELECT username FROM users WHERE username = $1 OR email = $2);`,
         [user.username, user.email])
         .then(data => {
           const testing = data.rows['0'].exists;
           if (testing) {
-            return res.send("User already exists")
+            let templateVars = {};
+            templateVars.username = null;
+            return res.render("username_exists", templateVars)
           } else {
             db.query(`INSERT INTO users (username, email, password, phone_number) VALUES ($1, $2, $3, $4) RETURNING *;`
             , [user.username, user.email, user.password, user.phone_number])
