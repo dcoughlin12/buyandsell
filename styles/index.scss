@@ -2,6 +2,7 @@ div.container {
   margin-top: 10px;
   margin-bottom: 10px;
   color: #181717 ;
+  width: 100%;
 }
 
 .listing-button-heart{
@@ -15,35 +16,94 @@ div.container {
 .listing-button-message{
   background-color: white;
   border: none;
-  margin:10px;
-  float:left;
+  margin: 10px;
   font-size: x-large;
   float:right;
   font-size: x-large;
  }
 
- .container{
-  margin-bottom: 32px;
- }
+div.col-sm-4.mt-500 {
+display: flex;
+justify-content: center;
+  margin:10px
+}
 
 
- .panel-footer{
+ .panel-footer.index{
   border-top: none;
   display:flex;
   justify-content: center;
  }
 
- .panel-heading {
+ div.panel-body.index{
+  height:250px;
+  display: flex;
+  justify-content: center;
+ }
+
+ .panel-heading.index {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   background-color: #337ab7;
   color: white;
+  height: 60px;
+  display:flex;
+  justify-content: center;
+  font-family: 'Baloo Bhaina 2', cursive;
+  font-size: medium;
+  font-weight: 600;
+  text-align: center;
 }
 
 li.navbar-brand.welcome {
   font-size: 22px;
   font-family: 'Baloo Bhaina 2', cursive;
   font-weight: 500;
+}
+
+
+.col-sm-4.mt-500{
+height: 435px;
+width: 400px;
+}
+
+img.img-responsive.index{
+  height: 200px;
+  width: 200px;
+}
+
+// li.dropdown{
+//   margin:50px;
+// }
+
+
+.filter{
+list-style-type: none;
+}
+
+.glyphicon.glyphicon-filter{
+  border-radius: 10px;
+  border: solid 2px;
+  padding: 10px;
+  font-size: larger;
+  height: 60%;
+}
+
+.carousel-inner{
+  height: 600px;
+  width: 2000px;
+
+}
+
+div#myCarousel.carousel.slide{
+  height: 600px;
+  width: 2000px;
+
+}
+
+div.container.carousel{
+  display:flex;
+  justify-content: center;
 }

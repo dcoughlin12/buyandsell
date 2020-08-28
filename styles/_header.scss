@@ -16,36 +16,12 @@ font-size: 22px;
 font-family: 'Baloo Bhaina 2', cursive;
 }
 
-
-a.post {
-  display: inline-block;
-  padding: none;
-  font-size: 15px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: black;
-  background-color:  #78bfd1;;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 6px #999;
-  font-weight: 700;
-  margin-left: 50px;
-  margin-top: 8px;
+a.create{
+  border: solid 2px;
+  border-radius: 10px;
+  font-family: 'Baloo Bhaina 2', cursive;
 }
 
-#button-height{
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color:black;
+a.create#font-create{
+  font-family: 'Baloo Bhaina 2', cursive;
 }
-
-a.post:hover {background-color: #78bfd1ad}
-
-a.post:active {
-  background-color: #78bfd1ad;
-  box-shadow: 0 2px #666;
-  transform: translateY(4px);
-}
-
