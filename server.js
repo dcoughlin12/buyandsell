@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
 });
 });
 
-//get route to filter from low to high, renders home page with filtered data
+// Get route to filter from low to high, renders home page with filtered data
 app.get("/lowtohigh", (req, res) => {
   let templateVars = {};
   db.query(`SELECT * FROM listings WHERE for_sale = 't' ORDER by price;`)
@@ -104,7 +104,7 @@ app.get("/lowtohigh", (req, res) => {
 });
 })
 
-//get route to filter from high to low, renders home page with filtered data
+// Get route to filter from high to low, renders home page with filtered data
 app.get("/hightolow", (req, res) => {
   let templateVars = {};
   db.query(`SELECT * FROM listings WHERE for_sale = 't' ORDER by price DESC;`)
@@ -122,9 +122,7 @@ app.get("/hightolow", (req, res) => {
 });
 })
 
-
-
-
+// Renders Register page
 app.get("/register", (req, res) => {
   if(!req.session.user_id) {
     let templateVars = { username: null };
@@ -135,6 +133,7 @@ app.get("/register", (req, res) => {
   }
 });
 
+// Renders Login page
 app.get("/login", (req, res) => {
   if(!req.session.user_id) {
     let templateVars = { username: null };
@@ -145,6 +144,7 @@ app.get("/login", (req, res) => {
   }
 });
 
+// Clears cookies to lok out the user and redirects to home
 app.get("/logout", (req, res) => {
   req.session.user_id = null;
   req.session.username = null;
@@ -152,19 +152,17 @@ app.get("/logout", (req, res) => {
   res.redirect('/');
 });
 
+// Renders favorites with appropriate listings for the user logged in
 app.get("/favorites", (req, res) => {
   let templateVars = {};
   if(!req.session.user_id) {
-    // templateVars.username = null;
     res.redirect("/")
   } else {
     templateVars.username = req.session.username;
     db.query(`SELECT * FROM listings JOIN favorites ON listing_id = listings.id WHERE
      favorites.user_id = $1 AND is_fave = true;`, [req.session.user_id])
     .then(data => {
-      console.log('favorites....', req.session);
       templateVars.myListings = data.rows;
-      console.log(data.rows);
       res.render("favorites", templateVars);
     })
   }
@@ -186,28 +184,24 @@ app.get("/myListings", (req, res) => {
   }
 });
 
-
-
+// Individual Listings route
 app.get("/each_listing/:listing_id", (req, res) => {
   if(!req.session.user_id) {
     res.redirect("/login");
   } else {
     const listing_id = req.params.listing_id;
-    console.log(listing_id);
     db.query(`SELECT * FROM listings WHERE id = $1;`,
     [listing_id])
     .then( (data) =>{
       let listing = data.rows[0];
-      // console.log(listing);
       req.session.listing_id = listing.id;
-      console.log(req.session);
       let templateVars =  { username : req.session.username, listing_id : listing };
       res.render("each_listing", templateVars)
     } )
   }
 });
 
-
+// Create listing route
 app.get("/create", (req, res) => {
   if(!req.session.user_id) {
     let templateVars = { username: null };
@@ -218,6 +212,7 @@ app.get("/create", (req, res) => {
   }
 });
 
+// Renders messages page with all message user has sent and recieved
 app.get("/messages", (req, res) => {
   if(!req.session.user_id) {
     res.redirect("/login");
@@ -231,9 +226,6 @@ app.get("/messages", (req, res) => {
     [req.session.user_id, req.session.user_id])
     .then((data) => {
       const listOfMessages = data.rows;
-      console.log('ROWCOUNT', data.rowCount)
-      console.log('LIST OF MESSAGES ', listOfMessages[0])
-      console.log(req.session.username)
       let templateVars =  { username : req.session.username, listOfMessages };
       res.render("messages", templateVars);
     })
@@ -242,11 +234,7 @@ app.get("/messages", (req, res) => {
 
 // make express look in the public directory for assets (css/js/img)
 // app.use(express.static(__dirname + '/public'));
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-
-
-// $(".messageForm").each(function(){console.log($(this).attr("action"))})

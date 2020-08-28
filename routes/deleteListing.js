@@ -1,6 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 
+
+// Delete a listing by clearing it fromthe db
 module.exports = (db) => {
   router.post("/:delete", (req, res) => {
     const trash = req.params.delete
@@ -8,7 +10,6 @@ module.exports = (db) => {
     ;` , [trash])
       .then(data => {
         const fav = data.rows;
-        console.log('this is data.rows!!!!!!!!!!!!!', fav)
         res.redirect("/myListings");
       })
       .catch(err => {
@@ -17,5 +18,5 @@ module.exports = (db) => {
           .json({ error: err.message });
         });
     });
-    return router;
-  }
+  return router;
+}

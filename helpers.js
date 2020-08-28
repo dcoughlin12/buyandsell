@@ -8,12 +8,11 @@ const generateCookieKey = () => {
 
 const getAllListings = (db) => {
   db.query(`SELECT * FROM listings WHERE for_sale = 't';`)
-        .then(data => {
-          // console.log(data.rows[0]);
-          const listings = data.rows[0];
-          return listings;
-        })
-}
+  .then(data => {
+    const listings = data.rows[0];
+    return listings;
+  })
+};
 
 
 module.exports = {

@@ -1,6 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 
+//marking an item as sold
+//changes for_sale boolean to false
 module.exports = (db) => {
   router.post("/:lstId", (req, res) => {
     const listingId = req.params.lstId
@@ -8,7 +10,6 @@ module.exports = (db) => {
     ;` , [listingId])
       .then(data => {
         const sold = data.rows;
-        console.log('this is data.rows!!!!!!!!!!!!!', sold)
         res.redirect("/myListings");
       })
       .catch(err => {
@@ -18,5 +19,5 @@ module.exports = (db) => {
         });
 
     });
-    return router;
-  }
+  return router;
+}

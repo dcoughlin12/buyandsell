@@ -10,8 +10,6 @@
   <link rel = "stylesheet" href="/styles/index.css">
   <link rel = "stylesheet" href="/styles/favorites.css">
 
-  <!-- <link rel = "stylesheet" href="/styles/_header.css"> -->
-
 
 <body>
 <%- include('partials/_header') %>
@@ -24,7 +22,6 @@
     <div class="col-sm-4 mt-500">
       <div class="panel panel-primary">
         <div class="panel-heading listing-header"><%= item.title %></div>
-
         <div class="panel-body listing">
           <a href="/each_listing/<%= item.listing_id %>"> <img src="<%= item.image_url %>" class="img-responsive" style="width:100%" alt="Image">
           </a>

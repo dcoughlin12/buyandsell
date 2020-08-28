@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
+//adds listing ID to db and ties it to user_id
 module.exports = (db) => {
   router.post("/:fav", (req, res) => {
     let listingId = req.params.fav
@@ -10,5 +11,5 @@ module.exports = (db) => {
         res.redirect("/favorites")
       })
     });
-    return router;
-  }
+  return router;
+}

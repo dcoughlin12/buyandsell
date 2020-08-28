@@ -22,11 +22,9 @@
 
   <div class="container">
     <div id="theListing" class="row mt-500 ">
-
       <% if (myListings.length < 1) { %>
         <a href="/create"><p>Create new listing</p></a>
        <%  } else { %>
-
         <% for (item of myListings) { %>
         <%  if (item.for_sale) { %>
           <div class="col-sm-4 mt-500">
@@ -76,7 +74,6 @@
                 <div class="panel-footer"><%= item.post_date%></div>
               </div>
             </div>
-
         <% } %>
       <% } %>
     <% } %>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
+//sets is_fav for that user and that listing id as true
 module.exports = (db) => {
   router.post("/:fav", (req, res) => {
     const favorite = req.params.fav
@@ -8,7 +9,6 @@ module.exports = (db) => {
     ;` , [favorite])
       .then(data => {
         const fav = data.rows;
-        console.log('this is data.rows!!!!!!!!!!!!!', fav)
         res.redirect("/favorites");
       })
       .catch(err => {
@@ -18,5 +18,5 @@ module.exports = (db) => {
         });
 
     });
-    return router;
-  }
+  return router;
+}

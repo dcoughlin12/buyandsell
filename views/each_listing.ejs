@@ -17,14 +17,12 @@
   <%- include('partials/_header') %>
       <div class="container">
       <h3 id="msgTitle"><b><%= listing_id.title %></b></h3>
-
       <div id="each-image"class="panel-body"><img src="<%= listing_id.image_url %>" class="img-responsive" style="width:100%" alt="Image"></div>
       <div class="price">$<%= listing_id.price %></div>
       <div class="description">
         <p><%= listing_id.description %></p>
       </div>
       <form class="favoritesButton"action="/fave/<%= listing_id.id %>" method="POST">
-        <!-- <button class="glyphicon glyphicon-heart listing-button-heart"> <p>Add to Favorites</p></button> -->
         <button class="btn btn-danger"><b> Add to Favorites 💙</b></button>
       </form>
       <form class="messageForm" action="/messages/" method="POST">
@@ -32,9 +30,7 @@
           <button id="messageButton" class="btn btn-primary">Send</button>
         </div>
       </form>
-    <!-- <button type="button" class="btn btn-primary">Contact Seller</button> -->
 </div>
     </main>
 </body>
 </html>
-<!-- "glyphicon glyphicon-heart-empty listing-button-heart-empty" -->
