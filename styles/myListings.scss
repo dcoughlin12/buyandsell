@@ -42,8 +42,7 @@
  }
 
 
-
- .cta {
+ div.cta {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,6 +59,10 @@
   font-size: 40px;
 }
 
-#itemSold {
-  background-color: pink;
-}
+
+img.img-responsive {
+  height: 200px;
+  width: 200px;
+ }
+
+

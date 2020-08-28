@@ -58,7 +58,7 @@
             <div class="col-sm-4 mt-500">
               <div id="soldItem"class="panel panel-primary" style="opacity: 50%">
                 <div class="panel-heading listing-header"><%= item.title %></div>
-                <div class="panel-body">
+                <div class="panel-body listing">
                   <a href="/each_listing/<%= item.id %>"> <img
                       src="https://cdn140.picsart.com/302470248530211.png?type=webp&to=min&r=480"
                       class="img-responsive" style="width:100%" alt="Image">
@@ -72,7 +72,7 @@
                       <button class="glyphicon glyphicon-comment listing-button-message" title="Message"></button>
                   </div>
                 </div>
-                <div class="panel-footer"><%="$" + item.price%></div>
+                <div class="panel-footer" id="price_listings"><%="$" + item.price%></div>
                 <div class="panel-footer"><%= item.post_date%></div>
               </div>
             </div>
