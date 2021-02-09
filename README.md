@@ -3,6 +3,8 @@ GoodBuy
 
 GoodBuy is a full stack web application built with Node and Express that act as a middleman between buyers and sellers of any kind of product. It was developed our midterm project in Lighthouse Lab Web Dev Bootcamp.
 
+https://goodbuy-app.herokuapp.com/
+
 !["screenshot description"](https://github.com/dcoughlin12/buyandsell/blob/master/doc/goodbuy1.png)
 !["screenshot description"](https://github.com/dcoughlin12/buyandsell/blob/master/doc/goodbuy2.png)
 
